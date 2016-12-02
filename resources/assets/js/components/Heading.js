@@ -1,15 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default class Heading extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
+export default class Heading extends Component {
     render() {
         return (
-            <h1 className="heading--main">
-               main bio
-            </h1>
+            <div className="heading--main">
+                <span>Laravel</span> React
+            </div>
         )
     }
 }

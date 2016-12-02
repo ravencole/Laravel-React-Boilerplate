@@ -1,3 +1,10 @@
+@mixin textShadow($color) {
+    text-shadow: 0px 0px 10px $color;
+}
+
 .heading--main {
-    color: lawngreen;
+    @include textShadow($blue);
+    & span:first-child {
+        @include textShadow($laravel-red);
+    }
 }

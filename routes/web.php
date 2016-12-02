@@ -15,9 +15,5 @@ use App\User;
 */
 
 Route::get('/', function () {
-    return view('welcome')
-         ->with('users', User::all()->toJson());
-});
-Route::get('/count', function() {
-    return Request::input('count') + 5;
+    return view('welcome');
 });

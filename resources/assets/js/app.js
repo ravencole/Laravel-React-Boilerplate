@@ -1,20 +1,40 @@
+import React from 'react'
+import { render } from 'react-dom'
+import Heading from './components/Heading'
+import TodosContainer from './components/TodosContainer'
+import request from 'superagent'
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+export default class App extends React.Component {
+    constructor(props) {
+        super(props)
 
-require('./bootstrap');
+        this.state = {
+            count: 0
+        }
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+        this.getCount = this.getCount.bind(this)
+    }
+    componentDidMount() {
+        window.setInterval(() => {
+            this.getCount()
+        }, 5000)
+    }
+    getCount() {
+        request
+            .get(`/count?count=${this.state.count}`)
+            .end((err, res) => {
+                if (err)
+                    console.log(err)
+                else
+                    this.setState({count: res.text})
+            })
+    }
+    render() {
+        return (
+            <div className="container">
+                <Heading />
+                <TodosContainer count={this.state.count} />
+            </div>
+        )
+    }
+}

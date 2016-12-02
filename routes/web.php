@@ -1,5 +1,8 @@
 <?php
 
+use App\User;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +15,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')
+         ->with('users', User::all()->toJson());
+});
+Route::get('/count', function() {
+    return Request::input('count') + 5;
 });

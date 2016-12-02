@@ -1,9 +1,26 @@
-
-// Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Mixins
+@import "mixins";
+
+// Partials
+@import "./partials/heading";
+@import "./partials/todos-container";
+
+html,
+body,
+.container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid red;
+    background-color: $grey;
+    font-family: Helvetica;
+    @include flex(center, flex-start, column);
+}
